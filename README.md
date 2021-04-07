@@ -1,0 +1,2 @@
+# repo-algoGA
+Algoritma Genetika
