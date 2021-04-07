@@ -1,0 +1,40 @@
+clear
+clc
+
+target = 'wirosableng';
+besar_populasi = 10;
+laju_mutasi = 0.4;
+
+populasi = create_population(target,besar_populasi);
+isLooping = true;
+generasi = 0;
+
+while isLooping
+%individu terbaik
+[parent1, parent2] = selection(populasi);
+
+%crossover
+[child1, child2] = crossover(parent1,parent2);
+
+%Mutasi
+mutant1 = mutation(child1,laju_mutasi);
+mutant2 = mutation(child2,laju_mutasi);
+
+mutant1.fitness= calculate_fitness(mutant1.gen,target);
+mutant2.fitness= calculate_fitness(mutant2.gen,target);
+
+%calon anggota
+children=[mutant1,mutant2];
+populasi = regeneration(children,populasi);
+generasi = generasi + 1;
+[isLooping, solusi] = termination(populasi);
+end
+
+function logging(populasi,target,solusi,generasi)
+
+    clc
+    fprintf('target : %s', target);
+    fprintf('target : %s', target);
+    fprintf('target : %s', target);
+end
+
